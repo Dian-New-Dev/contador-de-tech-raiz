@@ -2,11 +2,34 @@ const arrayDeInputs = [];
 
 const dynamicDiv = document.getElementById('dynamic-div');
 
+const arrayRecuperado = JSON.parse(localStorage.getItem("dados")) || [];
+
+checarSeLocalStorageTemDados();
+
+function checarSeLocalStorageTemDados(){
+    
+    if (arrayRecuperado && Array.isArray(arrayRecuperado)) {
+        arrayRecuperado.forEach(renderizarArrayDeInputs)
+    }
+}
+
 function handleInput(input) {
     const data = input;
     arrayDeInputs.push(data)
-    if (arrayDeInputs.length !== 0) {
-        arrayDeInputs.forEach(renderizarArrayDeInputs)
+    if (arrayRecuperado && Array.isArray(arrayRecuperado)) {
+        arrayRecuperado.push(data)
+        localStorage.setItem("dados", JSON.stringify(arrayRecuperado));
+        checarSeLocalStorageTemDados();
+
+    } else if (arrayDeInputs.length !== 0) {
+        localStorage.setItem("dados", JSON.stringify(arrayDeInputs));
+    }
+}
+
+function buscarDadosNoLocalStorage(){
+    const arrayRecuperado = JSON.parse(localStorage.getItem("dados"))
+    if (arrayRecuperado[0] !== "null" || arrayRecuperado !== "undefined") {
+        arrayRecuperado.forEach(renderizarArrayDeInputs)
     }
 }
 
