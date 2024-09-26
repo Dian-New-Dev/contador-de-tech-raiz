@@ -18,7 +18,12 @@
         <div class="main-outer-wrapper">
             <form action="#">
                 <input onchange="handleInput(this.value)" id="user-input" type="text">
+            
                 <button class="botao">Submeter</button>
+            
+                <button onclick="limparLocalStorage()" class="botao">Resetar</button>
+                
+            
             </form>
 
         </div>
@@ -35,4 +40,6 @@
 </body>
 
 <script src="index.js"></script>
+<script src="limparLocalStorage.js"></script>
+<script src="aumentarScore.js"></script>
 </html>
